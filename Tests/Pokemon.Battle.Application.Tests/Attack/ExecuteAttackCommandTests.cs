@@ -15,7 +15,6 @@ namespace Pokemon.Battle.Application.Tests.Attack
     {
         private readonly ExecuteAttackCommand _subject;
         private readonly Mock<IRandomValueRetriever> _randomValueRetrieverMock;
-        private readonly Mock<ITypeEffectivenessRetriever> _typeEffectivenessRetrieverMock;
 
         public ExecuteAttackCommandTests()
         {
@@ -26,8 +25,7 @@ namespace Pokemon.Battle.Application.Tests.Attack
             _randomValueRetrieverMock
                 .Setup(rvr => rvr.GetRandomIntFromRange(It.IsAny<IEnumerable<int>>()))
                 .Returns(255);
-            _typeEffectivenessRetrieverMock = new Mock<ITypeEffectivenessRetriever>();
-            _subject = new ExecuteAttackCommand(_randomValueRetrieverMock.Object, _typeEffectivenessRetrieverMock.Object);
+            _subject = new ExecuteAttackCommand(_randomValueRetrieverMock.Object);
         }
 
         [Fact]
@@ -35,14 +33,6 @@ namespace Pokemon.Battle.Application.Tests.Attack
         {
             //arrange
             var executeAttackModel = ExecuteAttackModelFixture.GetExecuteAttackModelForRaichuAttacksCharizardWithThunder();
-            _typeEffectivenessRetrieverMock
-                .Setup(ter => ter.GetTypeEffectiveness(executeAttackModel.Move.BattleType,
-                    executeAttackModel.DefendingPokemon.PrimaryType))
-                .Returns(1.0);
-            _typeEffectivenessRetrieverMock
-                .Setup(ter => ter.GetTypeEffectiveness(executeAttackModel.Move.BattleType,
-                    executeAttackModel.DefendingPokemon.SecondaryType!.Value))
-                .Returns(2.0);
             var expectedResult = new AttackResultModel()
             {
                 DefenderPokemonName = executeAttackModel.DefendingPokemon.Name,
@@ -62,10 +52,6 @@ namespace Pokemon.Battle.Application.Tests.Attack
         {
             //arrange
             var executeAttackModel = ExecuteAttackModelFixture.GetExecuteAttackModelForTurtwigAttacksPiplupWithLeafStorm();
-            _typeEffectivenessRetrieverMock
-                .Setup(ter => ter.GetTypeEffectiveness(executeAttackModel.Move.BattleType,
-                    executeAttackModel.DefendingPokemon.PrimaryType))
-                .Returns(2.0);
             var expectedResult = new AttackResultModel()
             {
                 DefenderPokemonName = executeAttackModel.DefendingPokemon.Name,

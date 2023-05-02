@@ -5,14 +5,11 @@ namespace Pokemon.Battle.Application.Attack
     public class ExecuteAttackCommand : IExecuteAttackCommand
     {
         private readonly IRandomValueRetriever _randomValueRetriever;
-        private readonly ITypeEffectivenessRetriever _typeEffectivenessRetriever;
 
         public ExecuteAttackCommand(
-            IRandomValueRetriever randomValueRetriever,
-            ITypeEffectivenessRetriever typeEffectivenessRetriever)
+            IRandomValueRetriever randomValueRetriever)
         {
             _randomValueRetriever = randomValueRetriever;
-            _typeEffectivenessRetriever = typeEffectivenessRetriever;
         }
 
         public AttackResultModel Execute(ExecuteAttackModel executeAttackModel)
@@ -66,19 +63,19 @@ namespace Pokemon.Battle.Application.Attack
             var modifier = 1.0;
             // STAB
             if (executeAttackModel.AttackingPokemon.PrimaryType == executeAttackModel.Move.BattleType ||
-                    executeAttackModel.AttackingPokemon.SecondaryType == executeAttackModel.Move.BattleType)
+                executeAttackModel.AttackingPokemon.SecondaryType == executeAttackModel.Move.BattleType)
             {
                 modifier *= 1.5;
             }
 
             // Type
-            var primaryTypeEffectiveness = _typeEffectivenessRetriever.GetTypeEffectiveness(executeAttackModel.Move.BattleType,
+            var primaryTypeEffectiveness = GetTypeEffectiveness(executeAttackModel.Move.BattleType,
                 executeAttackModel.DefendingPokemon.PrimaryType);
             modifier *= primaryTypeEffectiveness;
 
             if (executeAttackModel.DefendingPokemon.SecondaryType.HasValue)
             {
-                var secondaryTypeEffectiveness = _typeEffectivenessRetriever.GetTypeEffectiveness(executeAttackModel.Move.BattleType,
+                var secondaryTypeEffectiveness = GetTypeEffectiveness(executeAttackModel.Move.BattleType,
                     executeAttackModel.DefendingPokemon.SecondaryType.Value);
                 modifier *= secondaryTypeEffectiveness;
             }
@@ -89,6 +86,17 @@ namespace Pokemon.Battle.Application.Attack
             modifier *= damageMultiplier;
 
             return modifier;
+        }
+
+        private double GetTypeEffectiveness(BattleType attackingType, BattleType defendingType)
+        {
+            var typeMatchupChart = TypeMatchupChart.GetTypeMatchupChart();
+            if (!typeMatchupChart.ContainsKey(attackingType))
+            {
+                throw new Exception("Type not found in TypeMatrix");
+            }
+            var (_, typeMultiplier) = typeMatchupChart[attackingType].SingleOrDefault(bt => bt.Item1 == defendingType);
+            return typeMultiplier;
         }
     }
 }
