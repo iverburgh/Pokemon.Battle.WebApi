@@ -27,7 +27,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pokemon.Battle.Application.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6. Build and Deployment", "6. Build and Deployment", "{CA1A7534-46F5-4A52-8471-E6B9C4A16B6A}"
 	ProjectSection(SolutionItems) = preProject
-		.github\workflows\azure-webapps-dotnet-core.yml = .github\workflows\azure-webapps-dotnet-core.yml
+		.github\workflows\main_pokemonbattlewebapi-webapp.yml = .github\workflows\main_pokemonbattlewebapi-webapp.yml
 	EndProjectSection
 EndProject
 Global
