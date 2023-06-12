@@ -23,7 +23,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5. Common", "5. Common", "{
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pokemon.Battle.Common", "Pokemon.Battle.Common\Pokemon.Battle.Common.csproj", "{3A752F36-F8A5-453F-969F-2E4EC6350701}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pokemon.Battle.Application.Tests", "Tests\Pokemon.Battle.Application.Tests\Pokemon.Battle.Application.Tests.csproj", "{C0927CE6-12ED-4AE6-BC16-DC361C16B8EC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pokemon.Battle.Application.Tests", "Tests\Pokemon.Battle.Application.Tests\Pokemon.Battle.Application.Tests.csproj", "{C0927CE6-12ED-4AE6-BC16-DC361C16B8EC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6. Build and Deployment", "6. Build and Deployment", "{CA1A7534-46F5-4A52-8471-E6B9C4A16B6A}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\azure-webapps-dotnet-core.yml = .github\workflows\azure-webapps-dotnet-core.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
