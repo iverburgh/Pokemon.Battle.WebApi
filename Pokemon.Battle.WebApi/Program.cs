@@ -1,6 +1,12 @@
+using Pokemon.Battle.Application.Attack;
+using Pokemon.Battle.Common.Random;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+builder.Services.AddTransient<IExecuteAttackCommand, ExecuteAttackCommand>();
+builder.Services.AddTransient<IRandomValueRetriever, RandomValueRetriever>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
