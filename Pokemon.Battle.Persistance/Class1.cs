@@ -1,7 +1,6 @@
-﻿namespace Pokemon.Battle.Persistance
-{
-    public class Class1
-    {
+﻿namespace Pokemon.Battle.Persistance;
 
-    }
+public class Class1
+{
+
 }

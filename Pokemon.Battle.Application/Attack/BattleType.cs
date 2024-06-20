@@ -1,24 +1,23 @@
-﻿namespace Pokemon.Battle.Application.Attack
+﻿namespace Pokemon.Battle.Application.Attack;
+
+public enum BattleType
 {
-    public enum BattleType
-    {
-        Normal,
-        Fighting,
-        Flying,
-        Poison,
-        Ground,
-        Rock,
-        Bug,
-        Ghost,
-        Steel,
-        Fire,
-        Water,
-        Grass,
-        Electric,
-        Psychic,
-        Ice,
-        Dragon,
-        Dark,
-        Fairy,
-    }
+    Normal,
+    Fighting,
+    Flying,
+    Poison,
+    Ground,
+    Rock,
+    Bug,
+    Ghost,
+    Steel,
+    Fire,
+    Water,
+    Grass,
+    Electric,
+    Psychic,
+    Ice,
+    Dragon,
+    Dark,
+    Fairy,
 }

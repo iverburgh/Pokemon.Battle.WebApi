@@ -1,7 +1,6 @@
-﻿namespace Pokemon.Battle.Domain
-{
-    public class Class1
-    {
+﻿namespace Pokemon.Battle.Domain;
 
-    }
+public class Class1
+{
+
 }

@@ -1,8 +1,7 @@
-﻿namespace Pokemon.Battle.Application.Attack
+﻿namespace Pokemon.Battle.Application.Attack;
+
+public enum MoveCategory
 {
-    public enum MoveCategory
-    {
-        Physical,
-        Special
-    }
+    Physical,
+    Special
 }

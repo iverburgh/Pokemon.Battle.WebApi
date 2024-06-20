@@ -1,7 +1,6 @@
-﻿namespace Pokemon.Battle.Application.Attack
+﻿namespace Pokemon.Battle.Application.Attack;
+
+public interface IExecuteAttackCommand
 {
-    public interface IExecuteAttackCommand
-    {
-        AttackResultModel Execute(ExecuteAttackModel executeAttackModel);
-    }
+    AttackResultModel Execute(ExecuteAttackModel executeAttackModel);
 }
